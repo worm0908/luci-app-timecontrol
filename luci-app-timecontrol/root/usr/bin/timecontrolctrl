@@ -318,7 +318,7 @@ main_loop() {
     init_dirs
     while :; do
         dbg "开始检查设备"
-        [ `uci show $NAME 2>/dev/null | grep "enable='1'" | grep "device" | grep -oE '\[.*?\]' | grep -o '[0-9]' | sort -n | wc -l` eq 0 ] && timecontrol stop && break
+        [ `uci show $NAME 2>/dev/null | grep "enable='1'" | grep "device" | grep -oE '\[.*?\]' | grep -o '[0-9]' | sort -n | wc -l` -eq 0 ] && timecontrol stop && break
         for id in $(get_enabled_devices); do
             if check_device_control "$id"; then
                 update_device_status "$id" 0  # 允许
